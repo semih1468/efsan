@@ -1,0 +1,1994 @@
+:root {
+  --poster-color: rgba(255, 255, 255, 0);
+}
+
+/* 
+@include responsive(768px) {
+    background-color: blue;
+} 
+*/
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #4ab7b6 #222;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #222;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #4ab7b6;
+  border-radius: 10px;
+  border: 3px solid #222;
+}
+
+#default-poster {
+  background-color: transparent;
+}
+
+html {
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.compensate-for-scrollbar {
+  margin-right: 0 !important;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+  padding-right: 0 !important;
+}
+
+header {
+  padding: 20px 0 10px 0;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+}
+header .container nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .container nav .navlogo img {
+  width: 200px;
+  transition: 0.3s ease;
+}
+header .container nav .openmenubtn {
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  display: none;
+}
+header .container nav .openmenubtn i {
+  color: #fff;
+  font-size: 25px;
+  transition: 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+  header .container nav .openmenubtn {
+    display: flex;
+  }
+}
+header .container nav .openmenubtn.opened i {
+  transform: rotate(360deg);
+}
+header .container nav ul.navul {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: 0.3s ease;
+}
+header .container nav ul.navul li:not(:last-child) {
+  margin: 0 5px;
+}
+header .container nav ul.navul li:not(:last-child) a {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 15px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
+  font-weight: 500;
+}
+header .container nav ul.navul li:not(:last-child) a span {
+  position: relative;
+}
+header .container nav ul.navul li:not(:last-child) a::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: -100%;
+  background-color: #4ab7b6;
+  transition: 0.3s ease;
+}
+header .container nav ul.navul li:not(:last-child) a:hover {
+  color: #222;
+}
+header .container nav ul.navul li:not(:last-child) a:hover::before {
+  top: 0;
+}
+header .container nav ul.navul li:last-child {
+  margin-left: 10px;
+}
+header .container nav ul.navul li:last-child a {
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 25px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
+  background-color: #40af36;
+  border: 1px solid #40af36;
+  color: #fff;
+}
+header .container nav ul.navul li:last-child a span {
+  position: relative;
+}
+header .container nav ul.navul li:last-child a:hover {
+  background-color: transparent;
+  color: #40af36;
+}
+header .container nav ul.navul li.dropdownli ul {
+  display: flex;
+  background-color: #222222;
+  flex-direction: column;
+  overflow: hidden;
+  position: absolute;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  margin-top: 50px;
+}
+header .container nav ul.navul li.dropdownli ul li {
+  width: 100%;
+  margin: 0 !important;
+}
+header .container nav ul.navul li.dropdownli ul li a {
+  background-color: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  text-align: left !important;
+  display: flex;
+  width: 100%;
+  padding: 10px 15px !important;
+  background-color: #222 !important;
+}
+header .container nav ul.navul li.dropdownli ul li a:hover {
+  filter: brightness(1.3) !important;
+}
+header .container nav ul.navul li.dropdownli ul li a::before {
+  display: none;
+}
+header .container nav ul.navul li.dropdownli:hover ul {
+  opacity: 1;
+  visibility: visible;
+  margin-top: 0;
+}
+@media screen and (max-width: 768px) {
+  header .container nav ul.navul {
+    position: fixed;
+    width: 90%;
+    left: 5%;
+    top: 100px;
+    flex-direction: column;
+    padding: 30px;
+    background-color: #fff;
+    transform: rotateX(90deg);
+  }
+  header .container nav ul.navul.show {
+    transform: rotateX(0deg);
+  }
+  header .container nav ul.navul li.dropdownli {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  header .container nav ul.navul li.dropdownli ul {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    background-color: transparent !important;
+    margin-top: 0 !important;
+  }
+  header .container nav ul.navul li.dropdownli ul li {
+    background-color: transparent !important;
+    position: relative;
+    align-items: center;
+    display: flex;
+  }
+  header .container nav ul.navul li.dropdownli ul li a {
+    color: #222 !important;
+    background-color: transparent !important;
+    justify-content: center;
+    font-size: 16px;
+  }
+  header .container nav ul.navul li:not(:last-child) a {
+    color: #222;
+    font-size: 20px;
+  }
+}
+header.scrolled {
+  padding: 10px 0 5px 0;
+}
+header.scrolled .container nav .navlogo img {
+  width: 140px;
+}
+
+#mainsection {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  #mainsection {
+    height: 70vh;
+  }
+}
+#mainsection .nextsectionbtn {
+  position: absolute;
+  bottom: 30px;
+  z-index: 2;
+  color: #fff;
+  text-decoration: none;
+  font-size: 100px;
+  animation-name: nextsecanim;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+}
+@keyframes nextsecanim {
+  0% {
+    bottom: 30px;
+    opacity: 0;
+  }
+  80% {
+    bottom: 0;
+    opacity: 1;
+  }
+  100% {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+#mainsection .owlmainsec .item {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  #mainsection .owlmainsec .item {
+    height: 70vh;
+  }
+}
+#mainsection .owlmainsec .item::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#mainsection .owlmainsec .item .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  text-align: center;
+}
+#mainsection .owlmainsec .item .container .mainsectext {
+  color: #fff;
+  font-weight: 800;
+  font-size: 55px;
+  animation-timing-function: cubic-bezier(0.26, 0.67, 0.29, 0.92);
+}
+@media screen and (max-width: 768px) {
+  #mainsection .owlmainsec .item .container .mainsectext {
+    font-size: 35px;
+  }
+}
+#mainsection .owlmainsec .item .container p {
+  color: #fff;
+  font-size: 20px;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+}
+@media screen and (max-width: 768px) {
+  #mainsection .owlmainsec .item .container p {
+    font-size: 17px;
+  }
+}
+#mainsection .owlmainsec .item .container a {
+  display: inline-block;
+  padding: 10px 15px;
+  color: #222;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid #4ab7b6;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  animation-timing-function: cubic-bezier(0.26, 0.67, 0.29, 0.92);
+}
+#mainsection .owlmainsec .item .container a span {
+  position: relative;
+}
+#mainsection .owlmainsec .item .container a::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #4ab7b6;
+  transition: 0.3s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#mainsection .owlmainsec .item .container a:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+#mainsection .owlmainsec .item .container a:hover::before {
+  left: 100%;
+}
+#mainsection .owlmainsec .item img {
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+#nexteventssec {
+  padding: 150px 0;
+  background-color: #222;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec {
+    padding: 75px 0;
+  }
+}
+#nexteventssec #particles-js {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#nexteventssec .container {
+  position: relative;
+  z-index: 2;
+}
+#nexteventssec .container .sechead {
+  font-size: 45px;
+  color: #fff;
+  text-align: center;
+  font-weight: 200;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec .container .sechead {
+    font-size: 30px;
+  }
+}
+#nexteventssec .container .nexteventsdates {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 25px;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec .container .nexteventsdates {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #nexteventssec .container .nexteventsdates::before {
+    display: none;
+  }
+  #nexteventssec .container .nexteventsdates .nexteventdatebtn {
+    margin: 5px;
+  }
+}
+#nexteventssec .container .nexteventsdates::before {
+  content: "";
+  width: 99%;
+  height: 2px;
+  position: absolute;
+  background-color: #4ab7b6;
+}
+#nexteventssec .container .nexteventsdates .nexteventdatebtn {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  color: #fff;
+  border: 2px solid #4ab7b6;
+  border-radius: 50%;
+  background-color: #222;
+  transition: 0.3s ease;
+  font-weight: 900;
+  font-size: 13px;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec .container .nexteventsdates .nexteventdatebtn {
+    width: 75px;
+    height: 75px;
+    font-size: 12px;
+  }
+}
+#nexteventssec .container .nexteventsdates .nexteventdatebtn span {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 25px;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec .container .nexteventsdates .nexteventdatebtn span {
+    font-size: 20px;
+  }
+}
+#nexteventssec .container .nexteventsdates .nexteventdatebtn.active {
+  color: #222;
+  background-color: #4ab7b6;
+}
+#nexteventssec .container .nexteventcont {
+  margin-top: 50px;
+}
+#nexteventssec .container .nexteventcont img {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 15px;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec .container .nexteventcont img {
+    height: 300px;
+  }
+}
+#nexteventssec .container .nexteventcont .nexteventname {
+  color: #fff;
+  font-size: 40px;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec .container .nexteventcont .nexteventname {
+    font-size: 25px;
+    margin-top: 15px;
+  }
+}
+#nexteventssec .container .nexteventcont .nexteventtext {
+  color: #fff;
+  margin-top: 15px;
+  font-size: 25px;
+}
+@media screen and (max-width: 768px) {
+  #nexteventssec .container .nexteventcont .nexteventtext {
+    font-size: 20px;
+  }
+}
+#nexteventssec .container .nexteventcont .nexteventtext p {
+  margin-bottom: 0;
+}
+#nexteventssec .container .nexteventcont .nexteventdate {
+  background-color: #4ab7b6;
+  color: #222;
+  display: flex;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px 25px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 35px;
+}
+#nexteventssec .container .nexteventcont .rezervasyonbtn {
+  border: 1px solid #40af36;
+  padding: 10px 25px;
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: 15px;
+  display: inline-block;
+  color: #fff;
+  transition: 0.3s ease;
+}
+#nexteventssec .container .nexteventcont .rezervasyonbtn:hover {
+  background-color: #40af36;
+}
+
+#eventgallery {
+  padding: 150px 0 100px 0;
+  background-image: url("../img/mainsecbg.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  #eventgallery {
+    padding: 100px 0 75px 0;
+  }
+}
+#eventgallery::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+#eventgallery .container {
+  position: relative;
+  z-index: 9;
+}
+#eventgallery .container .sechead {
+  font-size: 50px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  #eventgallery .container .sechead {
+    font-size: 35px;
+  }
+}
+#eventgallery .container .eventgalleryowl {
+  margin-top: 50px;
+}
+#eventgallery .container .eventgalleryowl .item {
+  padding-bottom: 100px;
+}
+#eventgallery .container .eventgalleryowl .item a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#eventgallery .container .eventgalleryowl .item a i {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(74, 183, 182, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #222;
+  font-size: 25px;
+  transition: 0.3s ease;
+  transform: rotate(420deg);
+  opacity: 0;
+}
+#eventgallery .container .eventgalleryowl .item a::before {
+  content: "";
+  width: 100%;
+  height: 0%;
+  top: 0;
+  position: absolute;
+  background-color: rgba(34, 34, 34, 0.5);
+  transition: 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+#eventgallery .container .eventgalleryowl .item a:hover::before {
+  width: 100%;
+  height: 250px;
+}
+#eventgallery .container .eventgalleryowl .item a:hover i {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+#eventgallery .container .eventgalleryowl .item a img {
+  width: 100%;
+  padding: 1px;
+  height: 250px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+#eventgallery .container .eventgalleryowl .item a p {
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  font-size: 18px;
+  position: absolute;
+  top: calc(100% + 10px);
+}
+
+#footer {
+  padding: 120px 0;
+  background-color: #222;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  #footer {
+    padding: 100px 0 70px 0;
+  }
+}
+#footer model-viewer {
+  position: absolute;
+  top: -200px;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  --progress-bar-color: transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+#footer model-viewer.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+#footer model-viewer .progress-bar {
+  display: none !important;
+}
+#footer .container .footerlogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  #footer .container .footerlogo img {
+    width: 200px;
+    max-width: 75%;
+  }
+}
+#footer .container .footertext {
+  color: #fff;
+  font-size: 15px;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px solid #4ab7b6;
+  text-align: center;
+}
+#footer .container .contactlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+@media screen and (max-width: 768px) {
+  #footer .container .contactlist {
+    margin: 10px 0;
+  }
+}
+#footer .container .contactlist li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+#footer .container .contactlist li i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  margin-right: 15px;
+  color: #fff;
+}
+#footer .container .contactlist li > a, #footer .container .contactlist li > span {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+#footer .container .sechead {
+  color: #fff;
+  font-size: 30px;
+  padding: 10px 0;
+  margin-bottom: 25px;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  #footer .container .sechead {
+    font-size: 25px;
+    margin-bottom: 10px;
+    margin-top: 25px;
+  }
+}
+#footer .container .socialmedia {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#footer .container .socialmedia li {
+  margin: 0 10px;
+}
+#footer .container .socialmedia li a {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4ab7b6;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #222;
+  border: 2px solid #4ab7b6;
+  transition: 0.3s ease;
+}
+#footer .container .socialmedia li a i {
+  font-size: 22px;
+}
+#footer .container .socialmedia li a:hover {
+  background-color: #222;
+  color: #4ab7b6;
+}
+
+#reservation {
+  padding: 100px 0;
+  background-color: #141414;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  #reservation {
+    padding-top: 150px;
+    padding-bottom: 500px;
+  }
+}
+#reservation .masasecimihead {
+  text-align: center;
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  #reservation .masasecimihead {
+    font-size: 20px;
+    display: block;
+  }
+}
+#reservation .masasecimihead .kisisayisi {
+  margin-left: 10px;
+}
+#reservation .masasecimihead .kisisayisi a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 5px 10px;
+  display: inline-block;
+}
+#reservation .reservationwrapper {
+  width: 100%;
+  position: relative;
+  z-index: 9;
+}
+@media screen and (max-width: 768px) {
+  #reservation .reservationwrapper {
+    margin-top: 300px;
+    transform: rotate(-90deg) scale(2);
+  }
+}
+#reservation .reservationwrapper .floorplan {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+#reservation .reservationwrapper .masabutton {
+  position: absolute;
+  width: 3%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.5s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+#reservation .reservationwrapper .masabutton.visible {
+  opacity: 0.6;
+  pointer-events: all;
+}
+#reservation .reservationwrapper .masabutton:hover {
+  opacity: 1 !important;
+}
+#reservation .reservationwrapper .masabutton.reserved {
+  filter: grayscale(1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  pointer-events: none !important;
+}
+#reservation .reservationwrapper .masabutton span {
+  position: absolute;
+  color: #222;
+  font-weight: 500;
+  font-size: 1vw;
+}
+#reservation .reservationwrapper .masabutton.masa1 {
+  left: 15.2%;
+  transform: rotate(90deg);
+  top: 4.5%;
+}
+#reservation .reservationwrapper .masabutton.masa1 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa2 {
+  left: 15.2%;
+  transform: rotate(90deg);
+  top: 15.4%;
+}
+#reservation .reservationwrapper .masabutton.masa2 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa3 {
+  left: 15.2%;
+  transform: rotate(90deg);
+  top: 25%;
+}
+#reservation .reservationwrapper .masabutton.masa3 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa4 {
+  left: 15.2%;
+  transform: rotate(90deg);
+  top: 35%;
+}
+#reservation .reservationwrapper .masabutton.masa4 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa5 {
+  left: 15.2%;
+  transform: rotate(90deg);
+  top: 45.2%;
+}
+#reservation .reservationwrapper .masabutton.masa5 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa6 {
+  left: 22.3%;
+  transform: rotate(90deg);
+  top: 35%;
+}
+#reservation .reservationwrapper .masabutton.masa6 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa7 {
+  left: 22.3%;
+  transform: rotate(90deg);
+  top: 23.7%;
+}
+#reservation .reservationwrapper .masabutton.masa7 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa8 {
+  left: 22.3%;
+  transform: rotate(90deg);
+  top: 13.4%;
+}
+#reservation .reservationwrapper .masabutton.masa8 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa9 {
+  left: 28%;
+  transform: rotate(90deg);
+  top: 6.5%;
+}
+#reservation .reservationwrapper .masabutton.masa9 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa10 {
+  left: 28%;
+  transform: rotate(90deg);
+  top: 17.6%;
+}
+#reservation .reservationwrapper .masabutton.masa10 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa11 {
+  left: 28%;
+  transform: rotate(90deg);
+  top: 28.1%;
+}
+#reservation .reservationwrapper .masabutton.masa11 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa12 {
+  left: 28%;
+  transform: rotate(90deg);
+  top: 38.5%;
+}
+#reservation .reservationwrapper .masabutton.masa12 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa13 {
+  left: 33.5%;
+  transform: rotate(90deg);
+  top: 40%;
+}
+#reservation .reservationwrapper .masabutton.masa13 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa14 {
+  left: 33.5%;
+  transform: rotate(90deg);
+  top: 29.8%;
+}
+#reservation .reservationwrapper .masabutton.masa14 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa15 {
+  left: 33.5%;
+  transform: rotate(90deg);
+  top: 19.3%;
+}
+#reservation .reservationwrapper .masabutton.masa15 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa16 {
+  left: 33.5%;
+  transform: rotate(90deg);
+  top: 8.3%;
+}
+#reservation .reservationwrapper .masabutton.masa16 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa17 {
+  left: 39.3%;
+  transform: rotate(90deg);
+  top: 6.8%;
+}
+#reservation .reservationwrapper .masabutton.masa17 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa18 {
+  left: 39.3%;
+  transform: rotate(90deg);
+  top: 17.6%;
+}
+#reservation .reservationwrapper .masabutton.masa18 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa19 {
+  left: 39.3%;
+  transform: rotate(90deg);
+  top: 28.2%;
+}
+#reservation .reservationwrapper .masabutton.masa19 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa20 {
+  left: 39.3%;
+  transform: rotate(90deg);
+  top: 38.2%;
+}
+#reservation .reservationwrapper .masabutton.masa20 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa21 {
+  left: 47.7%;
+  transform: rotate(180deg);
+  top: 38.7%;
+}
+#reservation .reservationwrapper .masabutton.masa21 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa22 {
+  left: 47.7%;
+  transform: rotate(180deg);
+  top: 31.7%;
+}
+#reservation .reservationwrapper .masabutton.masa22 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa23 {
+  left: 47.7%;
+  transform: rotate(180deg);
+  top: 21.7%;
+}
+#reservation .reservationwrapper .masabutton.masa23 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa24 {
+  left: 55.5%;
+  transform: rotate(180deg);
+  top: 22.7%;
+}
+#reservation .reservationwrapper .masabutton.masa24 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa25 {
+  left: 55.5%;
+  transform: rotate(180deg);
+  top: 31.7%;
+}
+#reservation .reservationwrapper .masabutton.masa25 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa26 {
+  left: 55.5%;
+  transform: rotate(180deg);
+  top: 37.7%;
+}
+#reservation .reservationwrapper .masabutton.masa26 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa27 {
+  left: 39.5%;
+  transform: rotate(180deg);
+  top: 49.7%;
+}
+#reservation .reservationwrapper .masabutton.masa27 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa28 {
+  left: 47.8%;
+  transform: rotate(180deg);
+  top: 49.7%;
+}
+#reservation .reservationwrapper .masabutton.masa28 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa29 {
+  left: 55.5%;
+  transform: rotate(180deg);
+  top: 49.9%;
+}
+#reservation .reservationwrapper .masabutton.masa29 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa30 {
+  left: 67%;
+  transform: rotate(180deg);
+  top: 42.5%;
+}
+#reservation .reservationwrapper .masabutton.masa30 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa31 {
+  left: 67%;
+  transform: rotate(180deg);
+  top: 34.6%;
+}
+#reservation .reservationwrapper .masabutton.masa31 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa32 {
+  left: 67%;
+  transform: rotate(180deg);
+  top: 24%;
+}
+#reservation .reservationwrapper .masabutton.masa32 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa33 {
+  left: 75.7%;
+  transform: rotate(180deg);
+  top: 24%;
+}
+#reservation .reservationwrapper .masabutton.masa33 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa34 {
+  left: 75.7%;
+  transform: rotate(180deg);
+  top: 34.5%;
+}
+#reservation .reservationwrapper .masabutton.masa34 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa35 {
+  left: 75.7%;
+  transform: rotate(180deg);
+  top: 42.5%;
+}
+#reservation .reservationwrapper .masabutton.masa35 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa36 {
+  left: 83%;
+  transform: rotate(90deg);
+  top: 39.1%;
+}
+#reservation .reservationwrapper .masabutton.masa36 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa37 {
+  left: 83%;
+  transform: rotate(90deg);
+  top: 27.1%;
+}
+#reservation .reservationwrapper .masabutton.masa37 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa38 {
+  left: 83%;
+  transform: rotate(90deg);
+  top: 15.1%;
+}
+#reservation .reservationwrapper .masabutton.masa38 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa39 {
+  left: 83%;
+  transform: rotate(90deg);
+  top: 4.1%;
+}
+#reservation .reservationwrapper .masabutton.masa39 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa40 {
+  left: 89%;
+  transform: rotate(90deg);
+  top: 5.9%;
+}
+#reservation .reservationwrapper .masabutton.masa40 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa41 {
+  left: 89%;
+  transform: rotate(90deg);
+  top: 16.6%;
+}
+#reservation .reservationwrapper .masabutton.masa41 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa42 {
+  left: 89%;
+  transform: rotate(90deg);
+  top: 28.7%;
+}
+#reservation .reservationwrapper .masabutton.masa42 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa43 {
+  left: 89%;
+  transform: rotate(90deg);
+  top: 40.8%;
+}
+#reservation .reservationwrapper .masabutton.masa43 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa44 {
+  left: 94.4%;
+  transform: rotate(90deg);
+  top: 39.1%;
+}
+#reservation .reservationwrapper .masabutton.masa44 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa45 {
+  left: 94.4%;
+  transform: rotate(90deg);
+  top: 27.1%;
+}
+#reservation .reservationwrapper .masabutton.masa45 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa46 {
+  left: 94.4%;
+  transform: rotate(90deg);
+  top: 15.1%;
+}
+#reservation .reservationwrapper .masabutton.masa46 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa47 {
+  left: 94.4%;
+  transform: rotate(90deg);
+  top: 4.1%;
+}
+#reservation .reservationwrapper .masabutton.masa47 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa48 {
+  left: 91.7%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa48 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa49 {
+  left: 91.7%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa49 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa50 {
+  left: 91.7%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa50 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa51 {
+  left: 84.7%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa51 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa52 {
+  left: 84.7%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa52 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa53 {
+  left: 84.7%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa53 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa54 {
+  left: 77.4%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa54 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa55 {
+  left: 77.4%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa55 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa56 {
+  left: 77.4%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa56 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa57 {
+  left: 70%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa57 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa58 {
+  left: 70%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa58 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa59 {
+  left: 70%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa59 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa60 {
+  left: 61.2%;
+  transform: rotate(180deg);
+  top: 62.7%;
+}
+#reservation .reservationwrapper .masabutton.masa60 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa61 {
+  left: 52%;
+  transform: rotate(180deg);
+  top: 62.7%;
+}
+#reservation .reservationwrapper .masabutton.masa61 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa62 {
+  left: 39.7%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa62 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa63 {
+  left: 39.7%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa63 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa64 {
+  left: 39.7%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa64 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa65 {
+  left: 33.2%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa65 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa66 {
+  left: 33.2%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa66 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa67 {
+  left: 33.2%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa67 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa68 {
+  left: 27.7%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa68 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa69 {
+  left: 27.7%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa69 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa70 {
+  left: 27.7%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa70 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa71 {
+  left: 21.8%;
+  transform: rotate(180deg);
+  top: 77.4%;
+}
+#reservation .reservationwrapper .masabutton.masa71 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa72 {
+  left: 21.8%;
+  transform: rotate(180deg);
+  top: 67.1%;
+}
+#reservation .reservationwrapper .masabutton.masa72 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa73 {
+  left: 21.8%;
+  transform: rotate(180deg);
+  top: 60.1%;
+}
+#reservation .reservationwrapper .masabutton.masa73 span {
+  transform: rotate(-90deg);
+}
+#reservation .reservationwrapper .masabutton.masa74 {
+  left: 90.4%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa74 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+#reservation .reservationwrapper .masabutton.masa75 {
+  left: 83.1%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa75 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+#reservation .reservationwrapper .masabutton.masa76 {
+  left: 76%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa76 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+#reservation .reservationwrapper .masabutton.masa77 {
+  left: 68.5%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa77 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+#reservation .reservationwrapper .masabutton.masa78 {
+  left: 41.3%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa78 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+#reservation .reservationwrapper .masabutton.masa79 {
+  left: 34%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa79 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+#reservation .reservationwrapper .masabutton.masa80 {
+  left: 26.8%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa80 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+#reservation .reservationwrapper .masabutton.masa81 {
+  left: 19.8%;
+  transform: rotate(90deg);
+  top: 86.1%;
+  width: 6%;
+}
+#reservation .reservationwrapper .masabutton.masa81 span {
+  transform: rotate(-90deg);
+  font-size: 1.5vw;
+}
+
+#kisisayisi {
+  padding: 150px 0;
+  background-color: #1b1b1b;
+}
+#kisisayisi .row > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#kisisayisi .kisisayisicontcol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#kisisayisi .kisisayisicontcol .etkinlikname {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  #kisisayisi .kisisayisicontcol .etkinlikname {
+    font-size: 25px;
+    margin-top: 40px;
+  }
+}
+#kisisayisi .kisisayisicontcol .kisisayisitext {
+  color: #fff;
+  text-align: center;
+  font-size: 17px;
+}
+#kisisayisi .kisisayisicontcol form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  #kisisayisi .kisisayisicontcol form {
+    margin-top: 25px;
+  }
+}
+#kisisayisi .kisisayisicontcol form input {
+  width: 400px;
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: none;
+  margin-top: 15px;
+  border: none;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#kisisayisi .kisisayisicontcol form button {
+  background-color: #4ab7b6;
+  color: #222;
+  border: 1px solid #4ab7b6;
+  transition: 0.3s ease;
+  padding: 10px 20px;
+  width: 400px;
+  max-width: 80%;
+  text-align: center;
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  font-weight: 600;
+}
+#kisisayisi img {
+  border-radius: 20px;
+}
+@media screen and (max-width: 768px) {
+  #kisisayisi img {
+    height: 300px;
+  }
+}
+
+.rezervasyonformmodal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  transition: 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+@media screen and (max-width: 768px) {
+  .rezervasyonformmodal {
+    min-height: 100vh;
+    padding: 20px;
+  }
+}
+.rezervasyonformmodal.modalclose {
+  opacity: 0;
+  visibility: hidden;
+}
+.rezervasyonformmodal.modalopen {
+  opacity: 1;
+  visibility: visible;
+}
+.rezervasyonformmodal .modalclosebutton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.rezervasyonformmodal .modalclosebutton i {
+  color: #ad0000;
+  font-size: 35px;
+}
+.rezervasyonformmodal .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+@media screen and (max-width: 768px) {
+  .rezervasyonformmodal .container {
+    min-height: 100%;
+    align-items: flex-start;
+    overflow: auto;
+    padding: 0;
+  }
+}
+.rezervasyonformmodal .container form {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  pointer-events: auto;
+  position: relative;
+}
+.rezervasyonformmodal .container form .modalhead {
+  color: #222;
+  font-size: 22px;
+  text-align: center;
+  font-weight: 600;
+}
+.rezervasyonformmodal .container form .modaltableinfo {
+  text-align: center;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rezervasyonformmodal .container form .modaltableinfo div {
+  margin: 0 5px;
+}
+.rezervasyonformmodal .container form .menuselection {
+  margin-top: 10px;
+}
+.rezervasyonformmodal .container form .menuselection select {
+  width: 100%;
+  padding: 10px;
+  box-shadow: none;
+  outline: none;
+  border: 1px solid #ccc;
+  box-shadow: -1px 11px 45px -1px rgba(38, 38, 38, 0.17);
+  -webkit-box-shadow: -1px 11px 45px -1px rgba(38, 38, 38, 0.17);
+  -moz-box-shadow: -1px 11px 45px -1px rgba(38, 38, 38, 0.17);
+}
+.rezervasyonformmodal .container form .menuselection .menudetail {
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #fff;
+}
+.rezervasyonformmodal .container form .menuselection .menudetail .menudetailhead {
+  text-align: center;
+  font-size: 18px;
+  color: #222;
+  border-bottom: 1px solid #ccc;
+}
+@media screen and (max-width: 768px) {
+  .rezervasyonformmodal .container form .menuselection .menudetail .menudetailhead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+.rezervasyonformmodal .container form .menuselection .menudetail .menudetailhead .kisibasifiyat {
+  margin-left: 10px;
+  font-size: 14px;
+}
+.rezervasyonformmodal .container form .menuselection .menudetail .menudetailcont {
+  margin-top: 10px;
+}
+.rezervasyonformmodal .container form .menuselection .menudetail .menudetailcont p {
+  margin-bottom: 0px;
+}
+.rezervasyonformmodal .container form .menuselection .menudetail .menudetailcont p strong {
+  display: block;
+  margin-top: 15px;
+  color: #40af36;
+}
+.rezervasyonformmodal .container form input,
+.rezervasyonformmodal .container form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  box-shadow: none;
+  outline: none;
+}
+.rezervasyonformmodal .container form .inputdiv {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.rezervasyonformmodal .container form .inputdiv input {
+  width: 200px;
+  max-width: 50%;
+  margin-left: 20px;
+  margin-top: 0;
+}
+.rezervasyonformmodal .container form .checkboxgroup {
+  display: flex;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+.rezervasyonformmodal .container form .checkboxgroup input {
+  width: 30px;
+  margin-top: 3px;
+}
+.rezervasyonformmodal .container form .checkboxgroup .checklabel {
+  font-size: 13px;
+  width: 100%;
+}
+.rezervasyonformmodal .container form .checkboxgroup .checklabel span {
+  color: blue;
+  cursor: pointer;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary {
+  padding-top: 10px;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .toplamfiyat {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .toplamfiyat span {
+  color: #40af36;
+  font-size: 25px;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .kaporafiyat {
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .kaporafiyat span {
+  color: #40af36;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .bankabilgileri {
+  background-color: #ebebeb;
+  padding: 10px;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  margin-top: 15px;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .bankabilgileri.show {
+  display: flex;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .bankabilgileri .aliciadi {
+  font-size: 17px;
+  font-weight: 600;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .bankabilgileri .ibanno {
+  font-size: 15px;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .rezervasyonsubmit {
+  background-color: #40af36;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+  display: none;
+}
+.rezervasyonformmodal .container form .rezervasyonsummary .rezervasyonsubmit.show {
+  display: block;
+}
+.rezervasyonformmodal .rezervasyonformmodalbg {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.sozlesmemodal {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: flex-start;
+  left: 0;
+  top: 0;
+  z-index: 1055;
+  overflow-y: auto;
+}
+@media screen and (max-width: 768px) {
+  .sozlesmemodal {
+    height: 100%;
+    align-items: flex-start;
+    padding: 20px;
+  }
+}
+.sozlesmemodal.show {
+  display: flex;
+}
+.sozlesmemodal .container {
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+@media screen and (max-width: 768px) {
+  .sozlesmemodal .container {
+    overflow-y: auto;
+    height: 100%;
+  }
+}
+.sozlesmemodal .container p {
+  margin-bottom: 0;
+}
+.sozlesmemodal .container p b {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+.sozlesmemodal .container .sozlesmebtn {
+  background-color: #40af36;
+  color: #fff;
+  padding: 5px 25px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin-top: 15px;
+}
+.sozlesmemodal .container .sozlesmemodalclosebutton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.sozlesmemodal .container .sozlesmemodalclosebutton i {
+  color: #ad0000;
+  font-size: 35px;
+}
+.sozlesmemodal .sozlesmemodalbg {
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+#reservationpage {
+  padding: 150px 0 100px;
+  background-color: #2c2c2c;
+}
+#reservationpage .container .sechead {
+  text-align: center;
+  font-size: 45px;
+  font-weight: 600;
+  color: #fff;
+}
+#reservationpage .container .etkinlikcard {
+  background-color: #353535;
+  padding: 20px 10px;
+  border-radius: 40px;
+  height: 600px;
+  margin: 20px 0;
+}
+#reservationpage .container .etkinlikcard .etkinlikcardimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 450px;
+  margin-bottom: 15px;
+}
+#reservationpage .container .etkinlikcard .etkinlikcardimg img {
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  border-radius: 30px;
+}
+#reservationpage .container .etkinlikcard .etkinlikcardtitle {
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  text-decoration: none;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+#reservationpage .container .etkinlikcard .etkinlikcarddate {
+  color: #fff;
+  text-align: center;
+}
+
+#page {
+  padding: 200px 0 100px 0;
+  background-color: #292929;
+}
+#page .container .sechead {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+}
+#page .container .pageimg {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+#page .container .pagecontent {
+  color: #fff;
+}
+#page .container .galeriimg {
+  width: 100%;
+  margin: 13px 0;
+  display: inline-block;
+}
+#page .container .galeriimg img {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}/*# sourceMappingURL=style.css.map */
