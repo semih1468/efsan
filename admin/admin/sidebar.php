@@ -9,6 +9,22 @@
 
         <ul class="nav side-menu">
             <li>
+                <a><i class="fa  fa-picture-o"></i> Menu İşlemleri <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="menu_ekle.php">Menu Ekle</a></li>
+                    <li><a href="menu_liste.php">Menu Listesi</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <a><i class="fa  fa-picture-o"></i> Etkinlik İşlemleri <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="etkinlik_ekle.php">Etkinlik Ekle</a></li>
+                    <li><a href="etkinlik_liste.php">Etkinlik Listesi</a></li>
+
+                </ul>
+            </li>
+            <li>
                 <a><i class="fa  fa-picture-o"></i> Kayan Resim İşlemleri <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="slider_ekle.php">Kayan Resim Ekle</a></li>
@@ -17,6 +33,39 @@
                 </ul>
             </li>
             <li>
+                <a><i class="fa fa-home"></i> Galeri İşlemleri <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="resim_ekle.php">Resim Ekle</a></li>
+                    <li><a href="resim_liste.php">Resim Liste</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <a><i class="fa fa-home"></i> İş Ortakları <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="referans_ekle.php">İş Ortağı Ekle</a></li>
+                    <li><a href="referans_liste.php">İş Ortağı Listesi</a></li>
+
+                </ul>
+            </li>
+            <li><a href="iletisim_liste.php"><i class="fa fa-cogs"></i>İletisim Form</a></li>
+
+<!--            <li><a href="destekhatti_duzenle.php"><i class="fa fa-phone"></i> Çözümlerimiz Düzenleme</a></li>-->
+<!--            <li><a href="hakkimizda_duzenle.php"><i class="fa fa-history"></i> Hakkımızda Düzenleme</a></li>-->
+<!--            <li><a href="menu_duzenle.php"><i class="fa fa-history"></i> Menu Düzenleme</a></li>-->
+<!--            <li><a href="header_resim_duzenle.php"><i class="fa fa-history"></i>Sayfa Başlıkları Arkaplan</a></li>-->
+<!--            <li><a href="ceviri.php"><i class="fa fa-history"></i>Sayılarla Narpos</a></li>-->
+            <li><a href="site_ayar.php"><i class="fa fa-cogs"></i> Site Ayarları</a></li>
+<!--            <li><a href="mail_ayar.php"><i class="fa fa-cogs"></i> Mail Ayarları</a></li>-->
+            <li><a href="kullanici_duzenle.php"><i class="fa fa-cogs"></i>Kullanıcı Düzenle</a></li>
+
+
+
+
+
+
+            <!-- Kullanılmayanlar
+             <li>
                 <a><i class="fa  fa-picture-o"></i> Video İşlemleri <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="video_ekle.php">Video Ekle</a></li>
@@ -56,14 +105,7 @@
 
                 </ul>
             </li>
-            <li>
-                <a><i class="fa fa-home"></i> Referans İşlemleri <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="referans_ekle.php">Referans Ekle</a></li>
-                    <li><a href="referans_liste.php">Referans Listesi</a></li>
 
-                </ul>
-            </li>
             <li>
                 <a><i class="fa fa-home"></i> Program Özellik İşlemleri <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -107,21 +149,8 @@
 
                 </ul>
             </li>
-<!--            <li><a href="destekhatti_duzenle.php"><i class="fa fa-phone"></i> Çözümlerimiz Düzenleme</a></li>-->
-            <li><a href="hakkimizda_duzenle.php"><i class="fa fa-history"></i> Hakkımızda Düzenleme</a></li>
-<!--            <li><a href="menu_duzenle.php"><i class="fa fa-history"></i> Menu Düzenleme</a></li>-->
-            <li><a href="header_resim_duzenle.php"><i class="fa fa-history"></i>Sayfa Başlıkları Arkaplan</a></li>
-<!--            <li><a href="ceviri.php"><i class="fa fa-history"></i>Sayılarla Narpos</a></li>-->
-            <li><a href="site_ayar.php"><i class="fa fa-cogs"></i> Site Ayarları</a></li>
-            <li><a href="mail_ayar.php"><i class="fa fa-cogs"></i> Mail Ayarları</a></li>
-            <li><a href="kullanici_duzenle.php"><i class="fa fa-cogs"></i>Kullanıcı Düzenle</a></li>
 
 
-
-
-
-
-            <!-- Kullanılmayanlar
  <li>
                 <a><i class="fa fa-code"></i> Yazılım İşlemleri <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">

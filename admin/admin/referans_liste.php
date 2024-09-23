@@ -13,7 +13,7 @@
                 <thead>
                 <tr>
                     <th>Referans Resim</th>
-                    <th>Referans Baslik</th>
+<!--                    <th>Referans Baslik</th>          <td>'.$referans['referans_baslik'].'</td>-->
                     <th>Referans Sıra</th>
 
                     <th>Sil</th>
@@ -28,7 +28,7 @@
                     <tr>
                   
                     <td><img style="width: 150px;height: 150px;" src="../../upload/referans/'.$referans['referans_resim'].'"></td>
-                    <td>'.$referans['referans_baslik'].'</td>
+           
                     <td>'.$referans['referans_sira'].'</td>
               
                     <td>

@@ -928,14 +928,12 @@ where resimkategori_id=:id
             $uzanti = substr($_FILES['referans_resim']['name'], -4, $uzunluk);
             $referansekle = $db->prepare('insert into referans set 
 referans_resim=:resim,
-referans_sira=:sira,
-referans_baslik=:baslik
+referans_sira=:sira
 
 ');
             $referansekle->execute(array(
                 'resim' => $image . '.' . $resim->file_dst_name_ext,
-                'sira' => $_POST['referans_sira'],
-                'baslik' => $_POST['referans_baslik']
+                'sira' => $_POST['referans_sira']
 
             ));
             if ($referansekle) {
@@ -960,15 +958,14 @@ referans_baslik=:baslik
             $uzanti = substr($_FILES['referans_resim']['name'], -4, $uzunluk);
             $referansekle = $db->prepare('update referans set 
 referans_resim=:resim,
-referans_sira=:sira,
-referans_baslik=:baslik
+referans_sira=:sira
 where referans_id=:id
 
 ');
             $referansekle->execute(array(
                 'resim' => $image . '.' . $resim->file_dst_name_ext,
                 'sira' => $_POST['referans_sira'],
-                'baslik' => $_POST['referans_baslik'],
+
                 'id' => $_POST['referans_id']
 
             ));
@@ -978,14 +975,13 @@ where referans_id=:id
         } else {
             $referansekle = $db->prepare('update referans set 
 
-referans_sira=:sira,
-referans_baslik=:baslik
+referans_sira=:sira
 where referans_id=:id
 
 ');
             $referansekle->execute(array(
                 'sira' => $_POST['referans_sira'],
-                'baslik' => $_POST['referans_baslik'],
+
                 'id' => $_POST['referans_id']
 
             ));
@@ -1021,11 +1017,15 @@ where referans_id=:id
 slider_resim=:resim,
 slider_alt=:alt,
 sira=:sira,
+slider_button=:slider_button,
+slider_button_link=:slider_button_link,
 slider_title=:title
 ');
             $sliderekle->execute(array(
                 'resim' => $image . '.' . $resim->file_dst_name_ext,
                 'alt' => $_POST['slider_alt'],
+                'slider_button' => $_POST['slider_button'],
+                'slider_button_link' => $_POST['slider_button_link'],
                 'sira' => $_POST['sira'],
                 'title' => $_POST['slider_title']
             ));
@@ -1051,12 +1051,16 @@ slider_title=:title
 slider_resim=:resim,
 slider_alt=:alt,
 sira=:sira,
+slider_button=:slider_button,
+slider_button_link=:slider_button_link,
 slider_title=:title
 where slider_id=:id
 ');
             $sliderekle->execute(array(
                 'resim' => $image . '.' . $resim->file_dst_name_ext,
                 'alt' => $_POST['slider_alt'],
+                'slider_button' => $_POST['slider_button'],
+                'slider_button_link' => $_POST['slider_button_link'],
                 'title' => $_POST['slider_title'],
                 'sira' => $_POST['sira'],
                 'id' => $_POST['slider_id'],
@@ -1070,11 +1074,14 @@ where slider_id=:id
 
 slider_alt=:alt,
 slider_title=:title,
+slider_button=:slider_button,
+slider_button_link=:slider_button_link,
 sira=:sira
 where slider_id=:id
 ');
             $sliderekle->execute(array(
-
+                'slider_button' => $_POST['slider_button'],
+                'slider_button_link' => $_POST['slider_button_link'],
                 'alt' => $_POST['slider_alt'],
                 'title' => $_POST['slider_title'],
                 'id' => $_POST['slider_id'],
@@ -3872,6 +3879,306 @@ where id=:id
 
         }
 
+    }
+
+    #urun ekle
+    if (isset($_POST['menu_ekle'])) {
+
+        $ekle = $db->prepare('insert into menuler set 
+baslik=:baslik,
+icerik=:icerik
+');
+        $ekle->execute(array(
+            'baslik' => $_POST['baslik'],
+            'icerik' => $_POST['icerik']
+        ));
+        if ($ekle) {
+            // Yönlendirme işlemi
+            header('Location: ../menu_ekle.php?ok=ok');
+        }
+
+
+    }
+    if (isset($_GET['menu_sil'])) {
+        $sil = $db->prepare('delete from menuler where id=:id');
+        $sil->execute(array('id' => $_GET['menu_id']));
+        if ($sil) {
+            header('location:../menu_liste.php?sil=ok');
+        }
+    }
+#basindabiz düzenle
+    if (isset($_POST['menu_duzenle'])) {
+
+
+        $ekle = $db->prepare('update menuler set 
+baslik=:baslik,
+icerik=:icerik
+
+where id=:id
+');
+        $ekle->execute(array(
+            'baslik' => $_POST['baslik'],
+            'icerik' => $_POST['icerik'],
+            'id' => $_POST['menu_id']
+        ));
+        if ($ekle) {
+            header('location:../menu_liste.php?ok=ok');
+
+        }
+
+    }
+
+
+    #urun ekle
+    if (isset($_POST['etkinlik_ekle'])) {
+        $resimboyut = $_FILES['etkinlik_resim']['size'];
+        echo $resimboyut;
+        if ($resimboyut > 0) {
+            $resim = new Upload($_FILES['etkinlik_resim']);
+            $sayi = rand(0, 99999);
+            #upload
+            $resim->allowed = array('image/*');
+            $resim->image_convert = "webp";
+            $resim->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+            $resim->process('../../../upload/etkinlik');
+            $image = $resim->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+
+            $resim_anasayfa = new Upload($_FILES['anasayfa_resim']);
+            $sayi = rand(0, 99999);
+            #upload
+            $resim_anasayfa->allowed = array('image/*');
+            $resim_anasayfa->image_convert = "webp";
+            $resim_anasayfa->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+            $resim_anasayfa->process('../../../upload/etkinlik');
+            $image_anasayfa = $resim_anasayfa->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+            $ekle = $db->prepare('insert into etkinlikler set
+baslik=:baslik,
+aciklama=:aciklama,
+sira=:sira,
+                        etkinlik_resim=:etkinlik_resim,
+                        anasayfa_resim=:anasayfa_resim,
+                        tarih=:tarih
+');
+            $ekle->execute(array(
+                'baslik' => $_POST['baslik'],
+                'aciklama' => $_POST['aciklama'],
+                'sira' => $_POST['sira'],
+                'etkinlik_resim' => $image . '.' . $resim->file_dst_name_ext,
+                'anasayfa_resim' => $image_anasayfa . '.' . $resim_anasayfa->file_dst_name_ext,
+                'tarih' => $_POST['tarih']
+            ));
+            if ($ekle) {
+                $lastId = $db->lastInsertId();
+                $aktifler = [];
+
+                foreach ($_POST['sahneonu_menu_active'] as $menu_id => $value) {
+                    // Sadece aktif (1) olan menüleri al
+                    if ($value == 1) {
+                        // Aktif menüyü $aktifler dizisine ekle
+                        $aktifler[] = [
+                            'menu_id' => $menu_id,
+                            'tip' => 1, // Sabit bir tip değeri
+                            'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                            'etkinlik_id' => $lastId
+                        ];
+                    }
+                }
+                foreach ($_POST['ortamasalar_menu_active'] as $menu_id => $value) {
+                    // Sadece aktif (1) olan menüleri al
+                    if ($value == 1) {
+                        // Aktif menüyü $aktifler dizisine ekle
+                        $aktifler[] = [
+                            'menu_id' => $menu_id,
+                            'tip' => 2, // Sabit bir tip değeri
+                            'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                            'etkinlik_id' => $lastId
+                        ];
+                    }
+                }
+                foreach ($_POST['arkamasalar_menu_active'] as $menu_id => $value) {
+                    // Sadece aktif (1) olan menüleri al
+                    if ($value == 1) {
+                        // Aktif menüyü $aktifler dizisine ekle
+                        $aktifler[] = [
+                            'menu_id' => $menu_id,
+                            'tip' => 3, // Sabit bir tip değeri
+                            'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                            'etkinlik_id' => $lastId
+                        ];
+                    }
+                }
+                foreach ($_POST['localar_menu'] as $menu_id => $value) {
+                    // Sadece aktif (1) olan menüleri al
+                    if ($value == 1) {
+                        // Aktif menüyü $aktifler dizisine ekle
+                        $aktifler[] = [
+                            'menu_id' => $menu_id,
+                            'tip' => 4, // Sabit bir tip değeri
+                            'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                            'etkinlik_id' => $lastId
+                        ];
+                    }
+                }
+                foreach ($aktifler as $aktif) {
+                    $ekle = $db->prepare('insert into etkinlik_menu_fiyat set
+menu_id=:menu_id,
+etkinlik_id=:etkinlik_id,
+fiyat=:fiyat,
+tip=:tip
+');
+                    $ekle->execute(array(
+                        'menu_id' => $aktif['menu_id'],
+                        'etkinlik_id' => $aktif['etkinlik_id'],
+                        'fiyat' => $aktif['fiyat'],
+                        'tip' => $aktif['tip']
+                    ));
+                }
+                var_dump($aktifler);
+                // Yönlendirme işlemi
+                header('Location: ../etkinlik_liste.php?ok=ok');
+            }
+
+
+        }
+    }
+    if (isset($_POST['etkinlik_duzenle'])) {
+        $resimboyut = $_FILES['etkinlik_resim']['size'];
+        echo $resimboyut;
+        if ($resimboyut > 0) {
+            $resim = new Upload($_FILES['etkinlik_resim']);
+            $sayi = rand(0, 99999);
+            #upload
+            $resim->allowed = array('image/*');
+            $resim->image_convert = "webp";
+            $resim->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+            $resim->process('../../../upload/etkinlik');
+            $image = $resim->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+            $ekle = $db->prepare('update etkinlikler set
+etkinlik_resim=:etkinlik_resim
+where id=:id
+');
+            $ekle->execute(array(
+                'etkinlik_resim' => $image . '.' . $resim->file_dst_name_ext,
+                'id' => $_POST['etkinlik_id']
+            ));
+        }
+        $resimboyutanasayfa = $_FILES['etkinlik_resim']['size'];
+        echo $resimboyut;
+        if ($resimboyutanasayfa > 0) {
+            $resim_anasayfa = new Upload($_FILES['anasayfa_resim']);
+            $sayi = rand(0, 99999);
+            #upload
+            $resim_anasayfa->allowed = array('image/*');
+            $resim_anasayfa->image_convert = "webp";
+            $resim_anasayfa->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+            $resim_anasayfa->process('../../../upload/etkinlik');
+            $image_anasayfa = $resim_anasayfa->file_new_name_body = rseo($sayi . '-' . $_POST['baslik']);
+            $ekle = $db->prepare('update etkinlikler set
+anasayfa_resim=:anasayfa_resim
+where id=:id
+');
+            $ekle->execute(array(
+                'anasayfa_resim' => $image_anasayfa . '.' . $resim_anasayfa->file_dst_name_ext,
+                'id' => $_POST['etkinlik_id']
+            ));
+
+        }
+
+        $ekle = $db->prepare('update etkinlikler set
+baslik=:baslik,
+aciklama=:aciklama,
+sira=:sira,
+tarih=:tarih
+where id=:id
+');
+        $ekle->execute(array(
+            'baslik' => $_POST['baslik'],
+            'sira' => $_POST['sira'],
+            'aciklama' => $_POST['aciklama'],
+            'tarih' => $_POST['tarih'],
+            'id' => $_POST['etkinlik_id']
+        ));
+        if ($ekle) {
+
+            $aktifler = [];
+
+            foreach ($_POST['sahneonu_menu_active'] as $menu_id => $value) {
+                // Sadece aktif (1) olan menüleri al
+                if ($value == 1) {
+                    // Aktif menüyü $aktifler dizisine ekle
+                    $aktifler[] = [
+                        'menu_id' => $menu_id,
+                        'tip' => 1, // Sabit bir tip değeri
+                        'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                        'etkinlik_id' =>$_POST['etkinlik_id']
+                    ];
+                }
+            }
+            foreach ($_POST['ortamasalar_menu_active'] as $menu_id => $value) {
+                // Sadece aktif (1) olan menüleri al
+                if ($value == 1) {
+                    // Aktif menüyü $aktifler dizisine ekle
+                    $aktifler[] = [
+                        'menu_id' => $menu_id,
+                        'tip' => 2, // Sabit bir tip değeri
+                        'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                        'etkinlik_id' =>$_POST['etkinlik_id']
+                    ];
+                }
+            }
+            foreach ($_POST['arkamasalar_menu_active'] as $menu_id => $value) {
+                // Sadece aktif (1) olan menüleri al
+                if ($value == 1) {
+                    // Aktif menüyü $aktifler dizisine ekle
+                    $aktifler[] = [
+                        'menu_id' => $menu_id,
+                        'tip' => 3, // Sabit bir tip değeri
+                        'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                        'etkinlik_id' => $_POST['etkinlik_id']
+                    ];
+                }
+            }
+            foreach ($_POST['localar_menu'] as $menu_id => $value) {
+                // Sadece aktif (1) olan menüleri al
+                if ($value == 1) {
+                    // Aktif menüyü $aktifler dizisine ekle
+                    $aktifler[] = [
+                        'menu_id' => $menu_id,
+                        'tip' => 4, // Sabit bir tip değeri
+                        'fiyat' => $_POST['sahneonu_menu'][$menu_id], // Fiyatı $_POST'dan alıyoruz
+                        'etkinlik_id' => $_POST['etkinlik_id']
+                    ];
+                }
+            }
+            $sil = $db->prepare('delete from etkinlik_menu_fiyat where etkinlik_id=:id');
+            $sil->execute(array('id' => $_POST['etkinlik_id']));
+            foreach ($aktifler as $aktif) {
+                $ekle = $db->prepare('insert into etkinlik_menu_fiyat set
+menu_id=:menu_id,
+etkinlik_id=:etkinlik_id,
+fiyat=:fiyat,
+tip=:tip
+');
+                $ekle->execute(array(
+                    'menu_id' => $aktif['menu_id'],
+                    'etkinlik_id' => $aktif['etkinlik_id'],
+                    'fiyat' => $aktif['fiyat'],
+                    'tip' => $aktif['tip']
+                ));
+            }
+            var_dump($aktifler);
+            // Yönlendirme işlemi
+            header('Location: ../etkinlik_liste.php?ok=ok');
+        }
+
+
+    }
+    if (isset($_GET['etkinlik_sil'])) {
+        $sil = $db->prepare('delete from etkinlikler where id=:id');
+        $sil->execute(array('id' => $_GET['etkinlik_id']));
+        if ($sil) {
+            header('location:../etkinlik_liste.php?sil=ok');
+        }
     }
 
 }

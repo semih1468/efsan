@@ -5,36 +5,33 @@ ob_start();
 session_start();
 
 include '../baglan/baglan.php'; include 'resimseo.php';
+include 'class.upload.php';
 
 
 
-if (isset($_POST['kategoriust_id'])){
 
 if (!empty($_FILES)) {
 
-
-    $resimboyut=$_FILES['file']['size'];
-    $update_dir='../../../upload/resim';
-    $tmp_name=$_FILES['file']["tmp_name"];
-    $name=rseo($_FILES['file']["name"]);
-    $benzersiz1=rand(2500,3000);
-    $benzersiz2=rand(2500,3000);
-    $benzersiz3=rand(2500,3000);
-    $benzersiz4=rand(2500,3000);
-    $benzersizad=$benzersiz1.$benzersiz2.$benzersiz3.$benzersiz4;
-    $resimyol=$update_dir."/".$benzersizad.$name;
-    move_uploaded_file($tmp_name, "$update_dir/$benzersizad$name");
-
+    $resim = new Upload($_FILES['file']);
+    $sayi = rand(0, 99999);
+    #upload
+    $resim->allowed = array('image/*');
+    if ()
+    $resim->image_convert = "webp";
+    $resim->file_new_name_body = rseo($sayi . '-' . $_FILES['file']["name"]);
+    $resim->process('../../../upload/resim');
+    $image = $resim->file_new_name_body = rseo($sayi . '-' . $_FILES['file']["name"]);
+    echo $image;
+    echo '$image';
 	$kaydet=$db->prepare("insert into resim set
 
-		resim_baslik=:baslik,
-		kategoriust_id=:id
+		resim_baslik=:baslik
+	
 ");
 
 	$insert=$kaydet->execute(array(
 
-		'baslik' => $benzersizad.$name,
-        'id'=>$_POST['kategoriust_id']
+		'baslik' => $image . '.' . $resim->file_dst_name_ext
 
 
 		));
@@ -42,7 +39,7 @@ if (!empty($_FILES)) {
 
 
 }
-}
+
 
 
 

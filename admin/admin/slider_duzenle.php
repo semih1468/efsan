@@ -40,6 +40,20 @@ Saved with success. </h2>';}?>
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Button
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input  type="text" id="last-name" name="slider_button" value="<?php echo $slider['slider_button']?>" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Button Link
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input  type="text" id="last-name" name="slider_button_link" value="<?php echo $slider['slider_button_link']?>" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Sıra
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">

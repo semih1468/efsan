@@ -35,6 +35,27 @@ Saved with success. </h2>';}?>
                             <input required type="text" id="last-name" name="slider_alt" placeholder="Açıklama Yazınız" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Button
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input  type="text" id="last-name" name="slider_button" placeholder="Button İçeriği Yazınız" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"> Button Link
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input  type="text" id="last-name" name="slider_button_link" placeholder="Link Yazınız" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Sıra
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input required type="text" id="last-name" name="sira" value="0" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

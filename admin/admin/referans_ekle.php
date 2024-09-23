@@ -19,13 +19,13 @@
                             <input type="file" id="last-name" name="referans_resim" placeholder="Başlığı Yazınız" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Referans Baslik
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="last-name" name="referans_baslik"  class="form-control col-md-7 col-xs-12">
-                        </div>
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Referans Baslik-->
+<!--                        </label>-->
+<!--                        <div class="col-md-6 col-sm-6 col-xs-12">-->
+<!--                            <input type="text" id="last-name" name="referans_baslik"  class="form-control col-md-7 col-xs-12">-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Referans sıra
                         </label>

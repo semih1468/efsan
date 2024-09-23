@@ -2,7 +2,7 @@
 
 $(function () {
     var base_url = $('.base_url').val();
-    particlesJS.load('particles-js', base_url + 'dist/duqqan/js/particlesjs-config.json', function () {
+    particlesJS.load('particles-js', base_url + 'dist/assests/js/particlesjs-config.json', function () {
         //console.log('callback - particles.js config loaded');
     });
 

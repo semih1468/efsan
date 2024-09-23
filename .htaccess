@@ -1,0 +1,36 @@
+
+RewriteEngine on
+
+#ErrorDocument 404 https://narpos.com.tr/
+RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+RewriteRule ^sitemap.xml$ sitemap.php [NC,L]
+RewriteRule ^anasayfa$ index.php [NC,L]
+RewriteRule ^unilever$ unilever.php [NC,L]
+RewriteRule ^bayimolurmusun$ bayim.php [NC,L]
+RewriteRule ^rezervasyonform$ rezervasyonform.php [NC,L]
+RewriteRule ^kampanya$ kampanya.php [NC,L]
+RewriteRule ^tesk$ tesk.php [NC,L]
+RewriteRule ^entegrasyonlar$ entegrasyonlar.php [NC,L]
+RewriteRule ^referanslar$ referanslar.php [NC,L]
+RewriteRule ^satis-sozlesmesi$ satis-sozlesmesi.php [NC,L]
+RewriteRule ^gizlilik-sozlesmesi$ gizlilik-sozlesmesi.php [NC,L]
+RewriteRule ^programozellikler$ programozellikler.php [NC,L]
+RewriteRule ^kvkk$ kvkk.php [NC,L]
+RewriteRule ^bloglar$ bloglar.php [NC,L]
+RewriteRule ^basindabiz$ basindabizler.php [NC,L]
+RewriteRule ^qrtalep$ qrtalep.php [NC,L]
+RewriteRule ^smsret$ qrsmsred.php [NC,L]
+RewriteRule ^program-ozellikleri$ ozellikler.php [NC,L]
+RewriteRule ^iletisim$ iletisim.php [NC,L]
+RewriteRule ^blog/([0-9a-zA-Z-_]+)/([0-9]+)$ blog.php?sef=$1&blog_id=$2 [L,QSA]
+RewriteRule ^rezervasyon/([0-9a-zA-Z-_]+)/([0-9])/([0-9]+)$ rezervasyon.php?sef=$1&etkinlik_id=$2&kisi_sayisi=$3 [L,QSA]
+RewriteRule ^basindabiz-detay/([0-9a-zA-Z-_]+)/([0-9]+)$ basindabiz-detay.php?sef=$1&basindabiz_id=$2 [L,QSA]
+RewriteRule ^ozellik/([0-9a-zA-Z-_]+)/([0-9]+)$ programozellik.php?sef=$1&ozellik_id=$2 [L,QSA]
+RewriteRule ^urun/([0-9a-zA-Z-_]+)/([0-9]+)$ urunlerimiz.php?sef=$1&urun_id=$2 [L,QSA]
+RewriteRule ^faliyet/([0-9a-zA-Z-_]+)/([0-9]+)$ faliyetlerimiz.php?sef=$1&faliyet_id=$2 [L,QSA]
+RewriteRule ^entegrasyon/([0-9a-zA-Z-_]+)/([0-9]+)$ entegrasyon.php?sef=$1&ust_id=$2 [L,QSA]
+RewriteRule ^form/([0-9a-zA-Z-_]+) index.php?form_type=$1 [L,QSA]
+RedirectMatch  301 restoran-otomasyonu-nedir/ https://narpos.com.tr/blog/restoran-otomasyon-programi-nedir/80
+RedirectMatch  301 restaurant-sistemi-nedir/ https://narpos.com.tr/blog/restoran-otomasyon-programi-nedir/80
+RewriteRule ^hakkimizda$ hakkimizda.php [NC,L]
