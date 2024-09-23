@@ -53,7 +53,7 @@
                      data-image="upload/etkinlik/<?php echo $etkinlik['anasayfa_resim'] ?>"
                      data-date="<?php echo $etkinlik['tarih'] ?>" data-title="<?php echo $etkinlik['baslik'] ?>"
                      data-text=""
-                     data-link="rezervasyon/inci-mercan-konseri-17-eylul-sali/kisisayisi.html">
+                     data-link="kisisayisi/<?php echo seo($etkinlik['baslik'])?>/<?php echo  $etkinlik['id']?>">
                     <?php
                     $tarih_bolunmus = explode(' ', $etkinlik['tarih']);
                     $birinci = $tarih_bolunmus[0] ?? '';
@@ -66,7 +66,7 @@
 
 
         </div>
-        <?php echo '<h2>Burda</h2>';
+        <?php
         $etkinlikler2 = $db->prepare("SELECT * FROM etkinlikler ORDER BY sira ASC LIMIT 7");
         $etkinlikler2->execute();
 
@@ -86,7 +86,7 @@
                     <div class="nexteventtext">
                     </div>
                     <div class="nexteventdate"><?php echo $ilk_etkinlik['tarih']?></div>
-                    <a href="rezervasyon/inci-mercan-konseri-17-eylul-sali/kisisayisi.html" class="rezervasyonbtn">REZERVASYON
+                    <a href="kisisayisi/<?php echo seo($ilk_etkinlik['baslik'])?>/<?php echo  $ilk_etkinlik['id']?>" class="rezervasyonbtn">REZERVASYON
                         YAP</a>
                 </div>
             </div>

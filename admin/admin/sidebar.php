@@ -8,6 +8,7 @@
         -->
 
         <ul class="nav side-menu">
+            <li><a href="rezervasyon_liste.php"><i class="fa fa-cogs"></i>Rezervasyonlar</a></li>
             <li>
                 <a><i class="fa  fa-picture-o"></i> Menu İşlemleri <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">

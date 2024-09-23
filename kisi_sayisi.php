@@ -29,7 +29,7 @@ ob_start();
 <?php
 if(isset($_POST['kisi_sayisi'])){
 
-    header('location:rezervasyon/'.seo($etkinlik['baslik']).'/'.$_POST['etkinlik_id'].'/'.$_POST['kisi_sayisi']);
+    header('location:'.$ayar['ayar_site'].'rezervasyon/'.seo($etkinlik['baslik']).'/'.$_POST['etkinlik_id'].'/'.$_POST['kisi_sayisi']);
 }
 ?>
 <?php include'footer.php';?>

@@ -17,10 +17,10 @@
                     <div class="col-md-3">
                         <div class="etkinlikcard">
                             <a class="etkinlikcardimg"
-                               href="rezervasyon/inci-mercan-konseri-17-eylul-sali/kisisayisi.html"><img
+                               href="kisisayisi/<?php echo seo($etkinlik['baslik'])?>/<?php echo  $etkinlik['id']?>"><img
                                         src="upload/etkinlik/<?php echo $etkinlik['etkinlik_resim']?>"class="img-fluid"
                                         alt=""></a>
-                            <a href="rezervasyon/inci-mercan-konseri-17-eylul-sali/kisisayisi.html"
+                            <a href="kisisayisi/<?php echo seo($etkinlik['baslik'])?>/<?php echo  $etkinlik['id']?> ?>"
                                class="etkinlikcardtitle"><?php echo $etkinlik['baslik']?></a>
                             <div class="etkinlikcarddate"><?php echo $etkinlik['tarih']?></div>
                         </div>

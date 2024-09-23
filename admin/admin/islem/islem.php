@@ -4181,4 +4181,23 @@ tip=:tip
         }
     }
 
+    if (isset($_POST['rezervasyon_guncelle'])) {
+
+
+        $ekle = $db->prepare('update rezervasyonlar set 
+note=:note
+
+where id=:id
+');
+        $ekle->execute(array(
+            'note' => $_POST['aciklama'],
+            'id' => $_POST['rezervasyon_id']
+        ));
+        if ($ekle) {
+            header('location:../rezervasyon_liste.php?ok=ok');
+
+        }
+
+    }
+
 }

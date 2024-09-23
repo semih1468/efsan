@@ -11,7 +11,7 @@ $etkinlik = $etkinlikcek->fetch(PDO::FETCH_ASSOC);
         <div class="container">
 
             <div class="masasecimihead"><?php echo $etkinlik['baslik'] ?> -
-                <div class="kisisayisi"><?php echo $_GET['kisi_sayisi'] ?> KİŞİ <a href="kisisayisi.html">Değiştir</a>
+                <div class="kisisayisi"><?php echo $_GET['kisi_sayisi'] ?> KİŞİ <a href="kisisayisi/<?php echo seo($etkinlik['baslik'])?>/<?php echo  $etkinlik['id']?>">Değiştir</a>
                 </div>
             </div>
             <div class="reservationwrapper">
